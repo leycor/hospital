@@ -21,12 +21,12 @@ urlpatterns = [
 # API URLS
 
 #API VIEWS
-from hospital.users.urls import usertype_patterns
+#from hospital.users.urls import usertype_patterns
 
 urlpatterns += [
 
     #HOSPITAL
-    path('',include(usertype_patterns)),
+    #path('',include(usertype_patterns)),
     # API base url
     path("api/", include("config.api_router")),
     # DRF auth token

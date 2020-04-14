@@ -10,7 +10,7 @@ from hospital.users.models import User
 from hospital.users.api.serializers import UserHospitalSerializer, CreateUserHospitalSerializer
 
 
-class HospitalUserViewSet(mixins.ListModelMixin, mixins.RetrieveModelMixin, viewsets.GenericViewSet, mixins.CreateModelMixin):
+class UserViewSet(mixins.ListModelMixin, mixins.RetrieveModelMixin, viewsets.GenericViewSet, mixins.CreateModelMixin):
     queryset = User.objects.filter(is_staff=True)
     serializer_class = UserHospitalSerializer
 
