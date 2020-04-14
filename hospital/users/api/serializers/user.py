@@ -6,6 +6,7 @@ from rest_framework.validators import UniqueValidator
 from hospital.users.models import User
 
 
+
 class UserHospitalSerializer(serializers.ModelSerializer):
     
     class Meta:
@@ -13,6 +14,7 @@ class UserHospitalSerializer(serializers.ModelSerializer):
         fields = ['id','name','direction','phone']
 
 class CreateUserHospitalSerializer(serializers.ModelSerializer):
+    
 
     #Hospital Data
     name = serializers.CharField(min_length=3, max_length=200, allow_blank=False, required=True)

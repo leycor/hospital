@@ -14,12 +14,13 @@ from hospital.users.models import User
 class UserModel(HospitalModel):
     
     #Personal Info
+    dni = models.PositiveIntegerField(blank=False,null=False, unique=True)
     first_name = models.CharField(max_length=200, blank=False, null=False)
     last_name = models.CharField(max_length=200, blank=False, null=False)
     date_birth = models.DateField()
 
     #User data
-    dni = models.PositiveIntegerField(blank=False,null=False, unique=True)
+    username = models.CharField(max_length=200, blank=False, null=False, unique=True)
     password = models.CharField(max_length=200, blank=False, null=False)
 
     class Meta(HospitalModel.Meta):
