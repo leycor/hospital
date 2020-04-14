@@ -9,7 +9,7 @@ else:
     router = SimpleRouter()
 
 router.register("hospitals", views.HospitalUserViewSet, basename="hospitals")
-router.register("doctors", views.DoctorUserViewSet, basename="hospitals")
+router.register("doctors", views.DoctorUserViewSet, basename="doctors")
 
 
 app_name = "api"
