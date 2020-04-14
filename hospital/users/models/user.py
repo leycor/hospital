@@ -18,5 +18,5 @@ class User(HospitalModel, AbstractUser):
     REQUIRED_FIELDS = ['name','direction','phone','password']
 
     def __str__(self):
-        return self.self.username
+        return self.name
     

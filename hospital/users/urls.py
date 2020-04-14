@@ -1,14 +1,18 @@
-from django.urls import path
+#FROM DJANGO
+from django.urls import path, include
 
-from hospital.users.views import (
-    user_detail_view,
-    user_redirect_view,
-    user_update_view,
-)
+#REST FRAMEWORK
+from rest_framework import routers
 
-app_name = "users"
-urlpatterns = [
-    path("~redirect/", view=user_redirect_view, name="redirect"),
-    path("~update/", view=user_update_view, name="update"),
-    path("<str:username>/", view=user_detail_view, name="detail"),
-]
+#VIEWS
+from hospital.users.api import views
+
+#ROUTER
+router = routers.DefaultRouter()
+router.register(r'hospitals',views.HospitalUserViewSet, basename='hospitals')
+
+
+#PATH
+usertype_patterns = ([
+    path('',include(router.urls)),
+],'usertype')
