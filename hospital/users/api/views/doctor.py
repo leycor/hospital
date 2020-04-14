@@ -21,3 +21,12 @@ class DoctorUserViewSet(mixins.ListModelMixin, mixins.RetrieveModelMixin, viewse
         self.perform_create(serializer)
         headers = self.get_success_headers(serializer.data)
         return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+
+    def perform_create(self, serializer):
+
+        serializer.save()
+        username = serializer._kwargs['data']['username']
+        password = serializer._kwargs['data']['password']
+        User.objects.create(username=username, password=password, is_doctor=True)
+
+
