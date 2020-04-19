@@ -12,11 +12,17 @@ from hospital.users.api.serializers import DoctorHospitalSerializer, CreateDocto
 class DoctorUserViewSet(mixins.ListModelMixin, mixins.RetrieveModelMixin, viewsets.GenericViewSet, mixins.CreateModelMixin):
 
     queryset = Doctor.objects.all()
-    serializer_class = DoctorHospitalSerializer
+
+    def get_serializer_class(self):
+        if self.action == 'create':
+            self.serializer_class = CreateDoctorHospitalSerializer
+        else:
+            self.serializer_class = DoctorHospitalSerializer
+        return self.serializer_class
 
     def create(self, request, *args, **kwargs):
         request.data['hospital'] = request.user
-        serializer = CreateDoctorHospitalSerializer(data=request.data)
+        serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         self.perform_create(serializer)
         headers = self.get_success_headers(serializer.data)
