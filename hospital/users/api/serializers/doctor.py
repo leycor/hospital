@@ -12,10 +12,11 @@ from hospital.users.api.serializers import UserHospitalSerializer
 class DoctorHospitalSerializer(serializers.ModelSerializer):
 
     hospital = UserHospitalSerializer(read_only=True)
+    specialties = serializers.StringRelatedField(many=True)
     
     class Meta:
         model = Doctor
-        fields = ['id','username','dni','first_name','last_name', 'date_birth','hospital']
+        fields = ['id','username','dni','first_name','last_name','date_birth','specialties','hospital']
 
 class CreateDoctorHospitalSerializer(serializers.ModelSerializer):
 
