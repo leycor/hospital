@@ -8,6 +8,6 @@ from hospital.core.models import Speciality
 #SERIALIZERS
 from hospital.core.api.serializers import SpecialitySerializer
 
-class SpecialityViewSet(viewsets.ModelViewSet):
-    queryset = Speciality.objects.all()
+class SpecialityViewSet(mixins.ListModelMixin, mixins.RetrieveModelMixin, mixins.CreateModelMixin, viewsets.GenericViewSet):
+    queryset = Speciality.objects.all().values('name')
     serializer_class = SpecialitySerializer
